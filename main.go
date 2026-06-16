@@ -12,10 +12,11 @@ import (
 )
 
 func main() {
-	conf_file := os.Args[1]
-	if len(conf_file) == 0 {
+	if len(os.Args) < 2 || len(os.Args) > 3 {
 		log.Fatal("Failed to provide configuration file for variables")
 	}
+	conf_file := os.Args[1]
+
 	if out, err := providers.JSearch(conf_file); err != nil {
 		log.Fatalf("Failed to search JSearch Provider: %v", err)
 	} else {
