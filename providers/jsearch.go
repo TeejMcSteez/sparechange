@@ -92,22 +92,22 @@ func JSearch(file string) ([]types.ProviderOutput, error) {
 		return []types.ProviderOutput{}, err
 	}
 
-	rawJson, err := fetch(conf)
+	rawJson, err := fetchJsearch(conf)
 	if err != nil {
 		return []types.ProviderOutput{}, err
 	}
 
-	res, err := parse(rawJson)
+	res, err := parseJsearch(rawJson)
 	if err != nil {
 		return []types.ProviderOutput{}, err
 	}
 
-	data := normalize(res)
+	data := normalizeJsearch(res)
 
 	return data, nil
 }
 
-func fetch(conf JSearchConfig) ([]byte, error) {
+func fetchJsearch(conf JSearchConfig) ([]byte, error) {
 	var sb strings.Builder
 	sb.WriteString(conf.RAPID_API_URL)
 	if conf.RAPID_API_PARAMS != nil {
@@ -138,13 +138,13 @@ func fetch(conf JSearchConfig) ([]byte, error) {
 	return body, nil
 }
 
-func parse(body []byte) (JSearchResponse, error) {
+func parseJsearch(body []byte) (JSearchResponse, error) {
 	var resp JSearchResponse
 	err := json.Unmarshal(body, &resp)
 	return resp, err
 }
 
-func normalize(j JSearchResponse) (pOut []types.ProviderOutput) {
+func normalizeJsearch(j JSearchResponse) (pOut []types.ProviderOutput) {
 	for _, job := range j.Data.Jobs {
 		var newP types.ProviderOutput
 		newP.JobTitle = job.JobTitle
