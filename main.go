@@ -13,7 +13,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 || len(os.Args) > 3 {
-		log.Fatal("Failed to provide configuration file for variables")
+		log.Fatal("Please provide filename or -h")
 	}
 	arg := os.Args[1]
 	_, err := os.Stat(arg)
