@@ -38,7 +38,6 @@ func main() {
 					log.Fatalf("Failed to write output text file: %v", err)
 				}
 			case "2":
-				// Implement markdown ProviderOutput Parser
 				if err := parser.WriteMarkdown(timestamp_filename+".md", out); err != nil {
 					log.Fatalf("Failed to write output to markdown file: %v", err)
 				}
