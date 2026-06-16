@@ -1,5 +1,8 @@
 .env
 conf.yml
 *JSearch_Output*
+*Jsearch_Output*
+*Theirstack_Output*
+
 ex_*
 out.txt
